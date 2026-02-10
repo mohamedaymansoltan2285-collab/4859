@@ -70,6 +70,11 @@ const ConditionalAIChatButton = () => {
 
 const App = () => {
   useEffect(() => {
+    // Log app initialization
+    console.log('[v0] App initializing...');
+    console.log('[v0] Supabase URL:', import.meta.env.VITE_SUPABASE_URL ? '✓ Configured' : '✗ Missing');
+    console.log('[v0] Supabase Key:', import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ? '✓ Configured' : '✗ Missing');
+    
     const developerMessage = `
 %c
 ██████████████████████████████████████████████████████████████████████
