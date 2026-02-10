@@ -539,19 +539,19 @@ const Dashboard: React.FC = () => {
           </div>
           <div className="grid grid-cols-3 gap-3">
             {[
-              { path: '/review', icon: Layers, color: 'primary', label: language === 'ar' ? 'مراجعة' : '복습' },
-              { path: '/games', icon: Gamepad2, color: 'pink-500', label: language === 'ar' ? 'الألعاب' : '게임' },
-              { path: '/dictionary', icon: Book, color: 'blue-500', label: language === 'ar' ? 'القاموس' : '사전' },
-              { path: '/daily-challenge', icon: Zap, color: 'amber-500', label: language === 'ar' ? 'التحدي اليومي' : '일일 도전' },
-              { path: '/leaderboard', icon: Crown, color: 'yellow-500', label: language === 'ar' ? 'المتصدرين' : '리더보드' },
-              { path: '/topik', icon: FileText, color: 'purple-500', label: 'TOPIK' },
-              { path: '/stories', icon: BookStory, color: 'emerald-500', label: language === 'ar' ? 'القصص' : '스토리' },
-              { path: '/ai-chat', icon: MessageSquare, color: 'rose-500', label: language === 'ar' ? 'محادثة AI' : 'AI 채팅' },
-              { path: '/grammar', icon: Book, color: 'indigo-500', label: language === 'ar' ? 'القواعد' : '문법' },
-              { path: '/pronunciation', icon: Mic, color: 'cyan-500', label: language === 'ar' ? 'النطق' : '발음' },
-              { path: '/songs', icon: Music, color: 'fuchsia-500', label: language === 'ar' ? 'الأغاني' : '노래' },
-              { path: '/korean-series', icon: Tv, color: 'rose-500', label: language === 'ar' ? 'المسلسلات' : '드라마' },
-              { path: '/reports', icon: BarChart3, color: 'teal-500', label: language === 'ar' ? 'التقارير' : '보고서' },
+              { path: '/review', icon: Layers, bgColor: '#3b82f620', iconColor: '#3b82f6', label: language === 'ar' ? 'مراجعة' : '복습' },
+              { path: '/games', icon: Gamepad2, bgColor: '#ec489920', iconColor: '#ec4899', label: language === 'ar' ? 'الألعاب' : '게임' },
+              { path: '/dictionary', icon: Book, bgColor: '#3b82f620', iconColor: '#3b82f6', label: language === 'ar' ? 'القاموس' : '사전' },
+              { path: '/daily-challenge', icon: Zap, bgColor: '#f5991620', iconColor: '#f59916', label: language === 'ar' ? 'التحدي اليومي' : '일일 도전' },
+              { path: '/leaderboard', icon: Crown, bgColor: '#eab30820', iconColor: '#eab308', label: language === 'ar' ? 'المتصدرين' : '리더보드' },
+              { path: '/topik', icon: FileText, bgColor: '#a855f720', iconColor: '#a855f7', label: 'TOPIK' },
+              { path: '/stories', icon: BookStory, bgColor: '#10b98120', iconColor: '#10b981', label: language === 'ar' ? 'القصص' : '스토리' },
+              { path: '/ai-chat', icon: MessageSquare, bgColor: '#f4364220', iconColor: '#f43642', label: language === 'ar' ? 'محادثة AI' : 'AI 채팅' },
+              { path: '/grammar', icon: Book, bgColor: '#6366f120', iconColor: '#6366f1', label: language === 'ar' ? 'القواعد' : '문법' },
+              { path: '/pronunciation', icon: Mic, bgColor: '#06b6d420', iconColor: '#06b6d4', label: language === 'ar' ? 'النطق' : '발음' },
+              { path: '/songs', icon: Music, bgColor: '#d946ef20', iconColor: '#d946ef', label: language === 'ar' ? 'الأغاني' : '노래' },
+              { path: '/korean-series', icon: Tv, bgColor: '#f4364220', iconColor: '#f43642', label: language === 'ar' ? 'المسلسلات' : '드라마' },
+              { path: '/reports', icon: BarChart3, bgColor: '#14b8a620', iconColor: '#14b8a6', label: language === 'ar' ? 'التقارير' : '보고서' },
             ].map((item, index) => (
               <motion.button
                 key={item.path}
@@ -566,8 +566,18 @@ const Dashboard: React.FC = () => {
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
                 />
-                <div className={`w-12 h-12 rounded-xl bg-${item.color}/10 flex items-center justify-center relative z-10`}>
-                  <item.icon className={`w-6 h-6 text-${item.color}`} />
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center relative z-10"
+                  style={{
+                    backgroundColor: item.bgColor,
+                  }}
+                >
+                  <item.icon 
+                    className="w-6 h-6"
+                    style={{
+                      color: item.iconColor,
+                    }}
+                  />
                 </div>
                 <p className="font-semibold text-sm relative z-10">{item.label}</p>
               </motion.button>
