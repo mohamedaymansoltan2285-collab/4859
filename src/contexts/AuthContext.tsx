@@ -22,15 +22,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { toast } = useToast();
 
   useEffect(() => {
+    console.log('[v0] AuthProvider initializing...');
+    
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('[v0] Auth state changed:', { event, hasSession: !!session });
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('[v0] Got session:', { hasSession: !!session });
       setSession(session);
       setUser(session?.user ?? null);
+      setLoading(false);
+    }).catch((error) => {
+      console.error('[v0] Failed to get session:', error);
       setLoading(false);
     });
 
@@ -39,6 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signUp = async (email: string, password: string, fullName: string) => {
     try {
+      console.log('[v0] Sign up attempt:', { email, fullName });
       const redirectUrl = `${window.location.origin}/dashboard`;
       const { error } = await supabase.auth.signUp({
         email,
@@ -48,23 +56,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           data: { full_name: fullName }
         }
       });
-      if (error) throw error;
+      if (error) {
+        console.error('[v0] Sign up error:', error);
+        throw error;
+      }
+      console.log('[v0] Sign up successful');
       toast({
         title: 'تم إنشاء الحساب بنجاح!',
         description: 'مرحباً بك في رحلة تعلم اللغة الكورية',
       });
       return { error: null };
     } catch (error) {
+      console.error('[v0] Sign up catch error:', error);
       return { error: error as Error };
     }
   };
 
   const signIn = async (email: string, password: string) => {
     try {
+      console.log('[v0] Sign in attempt:', { email });
       const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      if (error) {
+        console.error('[v0] Sign in error:', error);
+        throw error;
+      }
+      console.log('[v0] Sign in successful');
       return { error: null };
     } catch (error) {
+      console.error('[v0] Sign in catch error:', error);
       return { error: error as Error };
     }
   };

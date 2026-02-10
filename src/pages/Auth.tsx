@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { SupabaseHealthCheck } from '@/components/SupabaseHealthCheck';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, Lock, User, ArrowLeft, ArrowRight, Loader2, Phone, MapPin, 
@@ -675,6 +676,11 @@ const Auth: React.FC = () => {
       {/* Auth Form */}
       <main className="relative z-10 flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-lg">
+          {/* Supabase Health Check */}
+          <div className="mb-4">
+            <SupabaseHealthCheck />
+          </div>
+          
           <motion.div 
             className="relative bg-card/80 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8"
             initial={{ opacity: 0, scale: 0.95 }}
